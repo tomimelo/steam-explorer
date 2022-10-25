@@ -1,0 +1,10 @@
+{
+  "require": ["ts-node/register"],
+  "recursive": true,
+  "inline-diffs": true,
+  "ui": "bdd",
+  "spec": ["src/**/*.spec.ts"],
+  "watch-files": ["src/**/*.ts", "test/**/*.ts"],
+  "watch-ignore": ["lib"],
+  "exit": true
+}
