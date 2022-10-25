@@ -1,5 +1,5 @@
 {
-  "name": "steamsearch",
+  "name": "steam-explorer",
   "version": "0.1.0",
   "description": "An API to search on Steam",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomimelo/steam-search.git"
+    "url": "git+https://github.com/tomimelo/steam-explorer.git"
   },
   "keywords": [
     "steam",
@@ -29,9 +29,9 @@
   "author": "Tomás Melone",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tomimelo/steam-search/issues"
+    "url": "https://github.com/tomimelo/steam-explorer/issues"
   },
-  "homepage": "https://github.com/tomimelo/steam-search#readme",
+  "homepage": "https://github.com/tomimelo/steam-explorer#readme",
   "files": [
     "lib/**/*"
   ],
