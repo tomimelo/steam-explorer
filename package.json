@@ -1,5 +1,5 @@
 {
-  "name": "steam-search",
+  "name": "steamsearch",
   "version": "0.1.0",
   "description": "An API to search on Steam",
   "main": "index.js",
