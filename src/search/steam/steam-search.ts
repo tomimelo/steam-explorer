@@ -23,14 +23,16 @@ export interface SteamUser extends User {
 }
 
 export class SteamSearch implements Search {
+  private defaultSearchOptions = { page: 1 }
   private apiClient: AxiosInstance
   private parser: Parser
   public constructor (private readonly config: SteamSearchConfig) {
+    this.validateConfig()
     this.apiClient = axios.create({ baseURL: 'http://api.steampowered.com', params: { key: this.config.apiKey } })
     this.parser = new HtmlParser()
   }
 
-  public async searchUsers (q: string, { page }: SearchOptions): Promise<SearchResults<ReadonlyArray<SteamUser>>> {
+  public async searchUsers (q: string, { page }: SearchOptions = this.defaultSearchOptions): Promise<SearchResults<ReadonlyArray<SteamUser>>> {
     const { html, total } = await this.fetchUsersRawData(q, page)
     const players = this.parser.parseUsers(html)
     const playersWithId = await Promise.all(players.map(async player => {
@@ -66,7 +68,7 @@ export class SteamSearch implements Search {
     }
   }
 
-  public async getSteamId (nickname: string): Promise<string> {
+  private async getSteamId (nickname: string): Promise<string> {
     const { data } = await this.apiClient.get(`/ISteamUser/ResolveVanityURL/v0001/?vanityurl=${nickname}`)
     if (data.response.success !== 1) {
       throw new Error('User not found')
@@ -84,5 +86,11 @@ export class SteamSearch implements Search {
     const [session] = cookie.split(';')
     const [, sessionId] = session.split('=')
     return sessionId
+  }
+
+  private validateConfig (): void {
+    if (!this.config.apiKey) {
+      throw new Error('You must provide a Steam API key in config')
+    }
   }
 }
