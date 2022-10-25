@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios'
 import { HtmlParser } from '../../parser/html/html-parser'
 import { Parser } from '../../parser/parser'
 import { User } from '../../types/user'
-import { Search, SearchOptions, SearchResults } from '../search'
+import { Explorer, FindOptions, FindResults } from '../explorer'
 
 interface UsersRawData {
   html: string,
@@ -14,7 +14,7 @@ interface SearchSteamCommunityResults {
   search_result_count: number
 }
 
-export interface SteamSearchConfig {
+export interface SteamExplorerConfig {
   apiKey: string
 }
 
@@ -22,17 +22,17 @@ export interface SteamUser extends User {
   id: string
 }
 
-export class SteamSearch implements Search {
-  private defaultSearchOptions = { page: 1 }
+export class SteamExplorer implements Explorer {
+  private defaultFindOptions = { page: 1 }
   private apiClient: AxiosInstance
   private parser: Parser
-  public constructor (private readonly config: SteamSearchConfig) {
+  public constructor (private readonly config: SteamExplorerConfig) {
     this.validateConfig()
     this.apiClient = axios.create({ baseURL: 'http://api.steampowered.com', params: { key: this.config.apiKey } })
     this.parser = new HtmlParser()
   }
 
-  public async searchUsers (q: string, { page }: SearchOptions = this.defaultSearchOptions): Promise<SearchResults<ReadonlyArray<SteamUser>>> {
+  public async findUsers (q: string, { page }: FindOptions = this.defaultFindOptions): Promise<FindResults<ReadonlyArray<SteamUser>>> {
     const { html, total } = await this.fetchUsersRawData(q, page)
     const players = this.parser.parseUsers(html)
     const playersWithId = await Promise.all(players.map(async player => {

@@ -1,1 +1,1 @@
-export { SteamSearch, SteamSearchConfig, SteamUser } from './search/steam/steam-search'
+export { SteamExplorer, SteamExplorerConfig, SteamUser } from './explorer/steam/steam-explorer'
