@@ -1,6 +1,6 @@
 {
   "name": "steam-explorer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An API to search on Steam",
   "main": "index.js",
   "types": "lib/index.d.ts",
