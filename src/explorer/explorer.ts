@@ -2,9 +2,9 @@ export interface FindOptions {
   page: number
 }
 
-export interface FindResults<T> {
+export interface FindResults<T = unknown> {
   total: number,
-  results: T,
+  results: ReadonlyArray<T>,
   page: number
 }
 

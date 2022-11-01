@@ -23,7 +23,7 @@ export interface SteamUser extends User {
 }
 
 export class SteamExplorer implements Explorer {
-  private defaultFindOptions = { page: 1 }
+  private readonly defaultFindOptions = { page: 1 }
   private apiClient: AxiosInstance
   private parser: Parser
   public constructor (private readonly config: SteamExplorerConfig) {
@@ -32,7 +32,7 @@ export class SteamExplorer implements Explorer {
     this.parser = new HtmlParser()
   }
 
-  public async findUsers (q: string, { page }: FindOptions = this.defaultFindOptions): Promise<FindResults<ReadonlyArray<SteamUser>>> {
+  public async findUsers (q: string, { page }: FindOptions = this.defaultFindOptions): Promise<FindResults<SteamUser>> {
     const { html, total } = await this.fetchUsersRawData(q, page)
     const players = this.parser.parseUsers(html)
     const playersWithId = await Promise.all(players.map(async player => {
