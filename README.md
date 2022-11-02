@@ -145,7 +145,7 @@ const steamExplorer = new SteamExplorer(config);
 
 ```
 
-### `findUsers(q, options) ===> Promise<FindResults\<SteamUser\>>`
+### `findUsers(q, options) ===> Promise<FindResults<SteamUser>>`
 Find users in Steam Community
 
 1.  Method Arguments
