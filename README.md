@@ -51,7 +51,12 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#methods">Methods</a></li>
+      </ul>
+    </li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -61,7 +66,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+# About The Project
 
 API to search on Steam Community. This is not an official Steam Application and it has no connection with Steam nor its developers
 
@@ -69,7 +74,7 @@ API to search on Steam Community. This is not an official Steam Application and 
 
 
 
-### Built With
+## Built With
 
 * [![Node][Node.js]][Node-url]
 
@@ -78,15 +83,15 @@ API to search on Steam Community. This is not an official Steam Application and 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+# Getting Started
 
 You need to follow some steps to get this running.
 
-### Prerequisites
+## Prerequisites
 
 You need to acquire an API key from Steam. You can acquire one [by filling out this form](https://steamcommunity.com/dev/apikey).
 
-### Installation
+## Installation
 
 Install the package using your package manager of choice.
    ```sh
@@ -98,9 +103,9 @@ Install the package using your package manager of choice.
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+# Usage
 
-You may then import the `SteamExplorer` class into your project.
+You may then import `SteamExplorer` into your project.
 
 ```js
 // ES Modules
@@ -118,8 +123,54 @@ const steamExplorer = new SteamExplorer({ apiKey: 'YOUR-API-KEY' });
 const usersResults = await steamExplorer.findUsers('johndoe')
 ```
 
+## Methods
+
+### `new SteamExplorer(config) ===> SteamExplorer object`
+
+Constructor to create a new `SteamExplorer` object. You need to provide a `config` object
+
+1.  Constructor Arguments
+
+    -   **config:** {SteamExplorerConfig}. Config object that contains the API key
+
+2.  Example Use
+
+```js
+
+const config = {
+  apiKey: 'YOUR-API-KEY'
+}
+
+const steamExplorer = new SteamExplorer(config);
+
+```
+
+### `findUsers(q, options) ===> Promise<FindResults\<SteamUser\>>`
+Find users in Steam Community
+
+1.  Method Arguments
+
+    -   **q:** {string}. Username to be searched
+    -   **options:** {FindOptions}. Search options. 
+    Default values: **page** = 1
+
+2.  Example Use
+
+```js
+
+const config = {
+  apiKey: 'YOUR-API-KEY'
+}
+
+const steamExplorer = new SteamExplorer(config);
+
+const usersResults = await steamExplorer.findUsers('johndoe')
+
+const moreUsersResults = await steamExplorer.findUsers('johndoe', { page: 2 })
+```
+
 <!-- CONTRIBUTING -->
-## Contributing
+# Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -137,7 +188,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## License
+# License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
@@ -146,7 +197,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+# Contact
 
 Tomas Melone - [@tomzdotjs](https://twitter.com/tomzdotjs)
 
