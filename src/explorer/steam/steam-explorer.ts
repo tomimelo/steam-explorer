@@ -52,6 +52,14 @@ export class SteamExplorer implements Explorer {
     }
   }
 
+  public async getSteamId (nickname: string): Promise<string> {
+    const { data } = await this.apiClient.get(`/ISteamUser/ResolveVanityURL/v0001/?vanityurl=${nickname}`)
+    if (data.response.success !== 1) {
+      throw new Error('User not found')
+    }
+    return data.response.steamid
+  }
+
   private async fetchUsersRawData (q: string, page: number): Promise<UsersRawData> {
     const cookie = await this.getCookie()
     if (!cookie) throw new Error('Cannot get cookie')
@@ -66,14 +74,6 @@ export class SteamExplorer implements Explorer {
       html,
       total
     }
-  }
-
-  private async getSteamId (nickname: string): Promise<string> {
-    const { data } = await this.apiClient.get(`/ISteamUser/ResolveVanityURL/v0001/?vanityurl=${nickname}`)
-    if (data.response.success !== 1) {
-      throw new Error('User not found')
-    }
-    return data.response.steamid
   }
 
   private async getCookie (): Promise<string | undefined> {
