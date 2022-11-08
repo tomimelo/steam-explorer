@@ -169,6 +169,10 @@ const usersResults = await steamExplorer.findUsers('johndoe')
 const moreUsersResults = await steamExplorer.findUsers('johndoe', { page: 2 })
 ```
 
+----------------------------------------
+
+> ℹ️ More functionalities coming soon... Ideas are welcome. You can request a feature creating a new issue
+
 <!-- CONTRIBUTING -->
 # Contributing
 
