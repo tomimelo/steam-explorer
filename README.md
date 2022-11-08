@@ -54,7 +54,12 @@
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#methods">Methods</a></li>
+        <a href="#methods">Methods</a>
+          <ul>
+            <li><a href="#new-steamexplorerconfig--steamexplorer-object">new SteamExplorer</a></li>
+            <li><a href="#findusersq-options--promisefindresultssteamuser">findUsers</a></li>
+            <li><a href="#getsteamidnickname--promisestring">getSteamId</a></li>
+          </ul>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
@@ -167,6 +172,29 @@ const steamExplorer = new SteamExplorer(config);
 const usersResults = await steamExplorer.findUsers('johndoe')
 
 const moreUsersResults = await steamExplorer.findUsers('johndoe', { page: 2 })
+```
+
+### `getSteamId(nickname) ===> Promise<string>`
+Get the SteamId of an user from his custom url nickname
+`https://steamcommunity.com/id/{{nickname}}`
+
+1.  Method Arguments
+
+    -   **nickname:** {string}. Custom url nickname to be searched
+
+2.  Example Use
+
+```js
+
+const config = {
+  apiKey: 'YOUR-API-KEY'
+}
+
+const steamExplorer = new SteamExplorer(config);
+
+//https://steamcommunity.com/id/johndoe12`
+const steamId = await steamExplorer.getSteamId('johndoe12')
+
 ```
 
 ----------------------------------------
