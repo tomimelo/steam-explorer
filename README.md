@@ -192,7 +192,7 @@ const config = {
 
 const steamExplorer = new SteamExplorer(config);
 
-//https://steamcommunity.com/id/johndoe12`
+//https://steamcommunity.com/id/johndoe12
 const steamId = await steamExplorer.getSteamId('johndoe12')
 
 ```
